@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+yaspin = "*"
+schedule = "*"
+prompt-toolkit = "*"
+"psycopg2-binary" = "*"
+
+[dev-packages]
+"flake8" = "*"
+aao = {editable = true, path = "/Users/simo/aao"}
+
+[requires]
+python_version = "3.7"
