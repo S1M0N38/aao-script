@@ -10,6 +10,7 @@ now install aao-script
 ```shell
 cd
 git clone https://github.com/S1M0N38/aao-script.git 
+cd aao-script
 pipenv install
 pipenv install $HOME/aao --dev
 ```
@@ -28,8 +29,8 @@ The .env file can be use to store login credentials for spiders, proxy or other 
 
 
 ### Usage
-activate virtualenv `pipenv shell`
-run the script `python run.py bwin`
+First activate virtualenv `pipenv shell` then run the script with `python run.py [spider]`
+
 
 ### Docs
 get the help `python run.py --help`
