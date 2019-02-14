@@ -19,8 +19,8 @@ def save_in_json(events, odds, bookmaker, path):
 def save_in_db(events, odds, bookmaker):
     DB_USER = os.environ['DB_USER']
     DB_PASSWORD = os.environ['DB_PASSWORD']
-    # DB_HOST = os.environ['DB_PORT']
-    # DB_PORT = os.environ['DB_PORT']
+    DB_HOST = os.environ['DB_HOST']
+    DB_PORT = os.environ['DB_PORT']
 
     def search_event(event):
         cur.execute('''SELECT event_id FROM events WHERE (
@@ -69,7 +69,7 @@ def save_in_db(events, odds, bookmaker):
 
     conn = psycopg2.connect(
         dbname='aao', user=DB_USER, password=DB_PASSWORD,
-        # host=DB_HOST, port=int(DB_PORT)
+        host=DB_HOST, port=int(DB_PORT)
     )
     cur = conn.cursor()
     for event, odd in zip(events, odds):
