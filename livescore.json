@@ -1,0 +1,109 @@
+{
+  "soccer": {
+    
+    "england": {
+        "name": "England",
+        "leagues": {
+            "premier_league": {
+                "name": "Premier League",
+                "teams": {
+                    "Manchester City": "Manchester City",
+                    "Lverpool": "Liverpool",
+                    "Manchester United": "Manchester United",
+                    "Chelsea": "Chelsea",
+                    "Tottenham Hotspur": "Tottenham",
+                    "Arsenal": "Arsenal",
+                    "Everton": "Everton",
+                    "Wolverhampton Wanderers": "Wolverhampton Wanderers",
+                    "Leicester City": "Leicester City",
+                    "West Ham United": "West Ham",
+                    "Southampton": "Southampton",
+                    "Crystal Palace": "Crystal Palace",
+                    "Burnley": "Burnley",
+                    "Newcastle United": "Newcastle United",
+                    "Brighton & Hove Albion": "Brighton & Hove Albion",
+                    "Watford": "Watford",
+                    "AFC Bournemouth": "Bournemouth",
+                    "Fulham": "Fulham",
+                    "Huddersfield Town": "Huddersfield Town",
+                    "Cardiff City": "Cardiff City"
+                }
+            },
+            "efl_championship": {
+                "name": "Championship",
+                "teams": null
+            }
+        }
+    },
+
+    "italy": {
+        "name": "Italy",
+        "leagues": {
+            "serie_a": {
+                "name": "Serie A",
+                "teams": {
+                    "Juventus": "Juventus",
+                    "Inter": "Inter",
+                    "SSC Napoli": "Napoli",
+                    "Roma": "Roma",
+                    "AC Milan": "AC Milan",
+                    "Lazio": "Lazio",
+                    "Atalanta": "Atalanta",
+                    "Fiorentina": "Fiorentina",
+                    "Torino": "Torino",
+                    "Sampdoria": "Sampdoria",
+                    "Genoa": "Genoa",
+                    "Udinese": "Udinese",
+                    "Sassuolo": "Sassuolo",
+                    "Parma Calcio 1913": "Parma",
+                    "SPAL 2013": "Spal",
+                    "Empoli": "Empoli",
+                    "Cagliari": "Cagliari",
+                    "Bologna": "Bologna",
+                    "Chievo Verona": "Chievo Verona",
+                    "Frosinone": "Frosinone"
+                }
+            },
+            "serie_b": {
+                "name": "Serie B",
+                "teams": null
+            }
+        }
+    },
+
+    "spain": {
+        "name": "Spain",
+        "leagues": {
+            "la_liga": {
+                "name": "Primera Division",
+                "teams": {
+                    "Barcelona": "Barcelona",
+                    "Sevilla": "Sevilla",
+                    "Atletico Madrid": "Atletico Madrid",
+                    "Real Madrid": "Real Madrid",
+                    "Real Betis": "Real Betis",
+                    "Deportivo Alaves": "Alaves",
+                    "Getafe": "Getafe",
+                    "Levante": "Levante",
+                    "Celta Vigo": "Celta Vigo",
+                    "Girona": "Girona",
+                    "Espanyol": "Espanyol",
+                    "Real Valladolid": "Real Valladolid",
+                    "Eibar": "Eibar",
+                    "Valencia": "Valencia",
+                    "Real Sociedad": "Real Sociedad",
+                    "Leganes": "Leganes",
+                    "Villarreal": "Villarreal",
+                    "Athletic Bilbao": "Athletic Bilbao",
+                    "Rayo Vallecano": "Rayo Vallecano",
+                    "SD Huesca": "SD Huesca"
+                }
+            },
+            "la_liga_2": {
+                "name": "Segunda Division",
+                "teams": null
+            }
+        }
+    }
+  }        
+}
