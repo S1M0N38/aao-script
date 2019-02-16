@@ -8,6 +8,8 @@ yaspin = "*"
 schedule = "*"
 prompt-toolkit = "*"
 "psycopg2-binary" = "*"
+requests-html = "*"
+pytz = "*"
 
 [dev-packages]
 "flake8" = "*"
