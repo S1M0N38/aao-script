@@ -1,5 +1,7 @@
 # aao-script
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a57832b88a4e4f5ba0954add05cee976)](https://www.codacy.com/app/S1M0N38/aao-script?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=S1M0N38/aao-script&amp;utm_campaign=Badge_Grade)
+
 ### Install
 first you need to install aao (pip package is not ready yet)
 ```shell
