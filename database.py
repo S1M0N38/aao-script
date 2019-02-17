@@ -14,6 +14,12 @@ def save_events_odds_in_json(events, odds, bookmaker, path):
         json.dump(odds, f, indent=2, default=str)
 
 
+def save_results_in_json(events, path):
+    results_file = 'results.json'
+    with open(os.path.join(path, results_file), 'w') as f:
+        json.dump(events, f, indent=2, default=str)
+
+
 def save_events_odds_in_db(events, odds, bookmaker):
     with DB() as db:
         for event, odd in zip(events, odds):
