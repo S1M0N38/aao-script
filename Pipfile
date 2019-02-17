@@ -10,10 +10,12 @@ prompt-toolkit = "*"
 "psycopg2-binary" = "*"
 requests-html = "*"
 pytz = "*"
+tabulate = "*"
 
 [dev-packages]
 "flake8" = "*"
 aao = {editable = true, path = "/Users/simo/aao"}
+bpython = "*"
 
 [requires]
 python_version = "3.7"
