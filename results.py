@@ -1,13 +1,62 @@
+import argparse
 from datetime import datetime
 import json
+import sys
+import time
 
+from prompt_toolkit import print_formatted_text, HTML
 import pytz
 from requests_html import HTMLSession
+import schedule
+from tabulate import tabulate
+from yaspin import yaspin
 
+import database
+
+# color from https://en.wikipedia.org/wiki/X11_color_names
+print = print_formatted_text
 
 URL = 'https://www.livescore.cz/'
 with open('livescore.json') as f:
     TABLE = json.load(f)['soccer']
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '--print', '-p', action='store_true',
+        help='print results in a nice table.')
+    parser.add_argument(
+        '--db', action='store_true',
+        help='update events in the postgres db. Need configs.')
+    parser.add_argument(
+        '--json', type=str, default=None,
+        help='save events results in the selected location as json.')
+    parser.add_argument(
+        '-s', '--schedule', type=int, default=30,
+        help=('set the schedule time (default is 30 min). '
+              'If set -1 run the job only one time'))
+    args = parser.parse_args()
+    print(HTML('<seagreen>✔</seagreen> args parsed'))
+    return args
+
+
+def pretty_print_events(events):
+    headers = ['datetime', 'country', 'league', 'started', 'finished',
+               'time', 'match']
+    events_list = []
+    for e in events:
+        events_list.append([
+            e['datetime'].strftime('%d %b \'%y - %H:%M'), e['country'],
+            e["league"], f'{"✔" if e["started"] else "✘"}',
+            f'{"✔" if e["finished"] else "✘"}', e['live_time'],
+            (f'{e["home_team"]}  {e["home_goals"]} : '
+             f'{e["away_goals"]}  {e["away_team"]}')
+        ])
+    table = tabulate(
+        events_list, headers=headers, tablefmt='fancy_grid',
+        colalign=('center', 'left', 'left', 'center', 'center', 'center', 'center'))
+    print(table)
 
 
 def parse_competition(row):
@@ -29,7 +78,7 @@ def parse_event(row, country, league):
     dt = datetime.strptime(dt, '%Y-%m-%dT%H:%M:%S%z').astimezone(pytz.utc)
     state = row.xpath('//td[@class="col-state nocol"]', first=True).text
     if state == '':
-        finished, started, live_time = False, False, 0
+        finished, started, live_time = False, False, None
     elif state[:-1].isdigit():
         finished, started, live_time = False, True, int(state[:-1])
     elif state == 'HT':
@@ -73,8 +122,42 @@ def get_events():
     return events
 
 
+def job(args):
+    print('─' * 80)
+    start_str = datetime.today().strftime(
+        '%d %b %Y - %H:%M:%S').rjust(80 - len(' '.join(sys.argv[1:])))
+    print(HTML(f'<teal>{" ".join(sys.argv[1:])}{start_str}</teal>\n'))
+    with yaspin(text=f'scraping results') as sp:
+        try:
+            start_time = time.time()
+            events = get_events()
+            sp.hide()
+            if args.db:
+                database.update_events_in_db(events)
+            if args.json is not None:
+                database.save_results_in_json(events, args.json)
+            if args.print:
+                pretty_print_events(events)
+            msg = ' got results'
+            info = (f'{len(events)} events {(time.time() - start_time):5.4}s '
+                    f'').rjust(79 - len(msg))
+            print(HTML(f'<seagreen>✔</seagreen>' + msg + info))
+        except IndexError as e:
+            sp.hide()
+            msg = f' [{type(e).__name__}]'
+            print(HTML(f'<red>✘</red>' + msg))
+        sp.show()
+
+
 def main():
-    [print(e) for e in get_events()]
+    args = parse_args()
+    if args.schedule == -1:
+        job(args)
+    else:
+        schedule.every(args.schedule).minutes.do(job, args=args)
+        while True:
+            schedule.run_pending()
+            time.sleep(5)
 
 
 if __name__ == '__main__':
