@@ -38,7 +38,7 @@ def parse_args():
     parser.add_argument(
         '-s', '--schedule', type=int, default=60,
         help=('set the schedule time (default is 60 min). '
-              'If set 0 run the job only one time'))
+              'If set -1 run the job only one time'))
     parser.add_argument(
         '-p', '--proxy', type=str, default=None,
         help=('use proxy in selenium for avoinding country ban. '
