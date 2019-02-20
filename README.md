@@ -1,6 +1,7 @@
 # aao-script
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a57832b88a4e4f5ba0954add05cee976)](https://www.codacy.com/app/S1M0N38/aao-script?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=S1M0N38/aao-script&amp;utm_campaign=Badge_Grade)
+
 A collection of script that use [aao](https://github.com/S1M0N38/aao) to 
 collect **events**, **odds**, **results** data about football matches.
 
@@ -10,7 +11,7 @@ In order to use aao-script clone this repository
 git clone https://github.com/S1M0N38/aao-script.git 
 ```
 and the install the required dependencies 
-([pipenv](https://pipenv.readthedocs.io/en/latest/)(strongly recommended))
+([pipenv](https://pipenv.readthedocs.io/en/latest/) strongly recommended)
 ```shell
 cd aao-script
 pipenv install
