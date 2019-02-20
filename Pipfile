@@ -11,10 +11,10 @@ prompt-toolkit = "*"
 requests-html = "*"
 pytz = "*"
 tabulate = "*"
+aao = {editable = true, git = "https://github.com/S1M0N38/aao.git"}
 
 [dev-packages]
 "flake8" = "*"
-aao = {editable = true, path = "/Users/simo/aao"}
 bpython = "*"
 
 [requires]
