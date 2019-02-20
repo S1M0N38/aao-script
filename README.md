@@ -5,7 +5,7 @@
 A collection of script that use [aao](https://github.com/S1M0N38/aao) to 
 collect **events**, **odds**, **results** data about football matches.
 
-## Installation
+## ⬇️ Installation
 In order to use aao-script clone this repository 
 ```shell
 git clone https://github.com/S1M0N38/aao-script.git 
@@ -18,7 +18,7 @@ pipenv install
 ```
 when you need to upgrade aao and aao-script perform a `git pull` and `pipenv install`
 
-## Configuration
+## ⚙️ Configuration
 create in .env file in */aao-script* for database configuration 
 (if you plan to use a postgresql database).
 ```bashrc
@@ -34,7 +34,7 @@ Other configuration files are the *competitions* files. They are *.csv* store in
 [competiton/{bookmaker}.csv](https://github.com/S1M0N38/aao-script/tree/master/competitions).
 Here you can specify the pain `{country},{league}` scrape by each spider.
 
-## Usage
+## ⚡️ Usage
 First got to your local */aao-script* directory.
 Then you need to activate the virtualenv with the command `pipenv shell`.
 
@@ -66,7 +66,7 @@ python results.py
 Like `scrape.py` it can save the data in the postgresql database with `--db` flag
 but it can also store the colleced date in a json file (`--json {path}`).
 
-## Documentation
+## 📖 Documentation
 There is no complete documentation for this project;
 you can get the information from this README.md file or
 using the help flag: `python scrape.py --help` and `python results.py --help`
