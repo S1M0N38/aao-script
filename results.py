@@ -55,7 +55,8 @@ def pretty_print_events(events):
         ])
     table = tabulate(
         events_list, headers=headers, tablefmt='fancy_grid',
-        colalign=('center', 'left', 'left', 'center', 'center', 'center', 'center'))
+        colalign=(
+            'center', 'left', 'left', 'center', 'center', 'center', 'center'))
     print(table)
 
 
@@ -136,10 +137,10 @@ def job(args):
                 database.update_events_in_db(events)
             if args.json is not None:
                 database.save_results_in_json(events, args.json)
-            if args.print:
+            if args.print and events:
                 pretty_print_events(events)
             msg = ' got results'
-            info = (f'{len(events)} events {(time.time() - start_time):5.4}s '
+            info = (f'{len(events)} events [{(time.time() - start_time):5.4}s]'
                     f'').rjust(79 - len(msg))
             print(HTML(f'<seagreen>✔</seagreen>' + msg + info))
         except IndexError as e:
