@@ -109,3 +109,6 @@ venv.bak/
 
 # file generate by VIM
 *.swp
+
+# pipenv use now different source
+Pipfile.lock
