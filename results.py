@@ -78,7 +78,7 @@ def parse_event(row, country, league):
     dt = row.xpath('//td[@class="col-time nocol"]/time')[0].attrs['datetime']
     dt = datetime.strptime(dt, '%Y-%m-%dT%H:%M:%S%z').astimezone(pytz.utc)
     state = row.xpath('//td[@class="col-state nocol"]', first=True).text
-    if state == '':
+    if state == '' or state == 'Pst' or state == 'FAA':
         finished, started, live_time = False, False, None
     elif state[:-1].isdigit():
         finished, started, live_time = False, True, int(state[:-1])
