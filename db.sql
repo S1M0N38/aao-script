@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.2
+-- Dumped from database version 9.6.12
 -- Dumped by pg_dump version 11.2
 
 SET statement_timeout = 0;
@@ -43,7 +43,6 @@ ALTER TABLE public.api_active_odds OWNER TO site;
 --
 
 CREATE SEQUENCE public.api_active_odds_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -84,7 +83,6 @@ ALTER TABLE public.api_all_odds OWNER TO site;
 --
 
 CREATE SEQUENCE public.api_all_odds_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -124,7 +122,6 @@ ALTER TABLE public.api_events OWNER TO site;
 --
 
 CREATE SEQUENCE public.api_events_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -214,48 +211,6 @@ ALTER TABLE ONLY public.api_active_odds
 
 ALTER TABLE ONLY public.api_all_odds
     ADD CONSTRAINT api_all_odds_event_id_da2c3a91_fk_api_events_id FOREIGN KEY (event_id) REFERENCES public.api_events(id) DEFERRABLE INITIALLY DEFERRED;
-
-
---
--- Name: TABLE api_active_odds; Type: ACL; Schema: public; Owner: site
---
-
-GRANT ALL ON TABLE public.api_active_odds TO script;
-
-
---
--- Name: SEQUENCE api_active_odds_id_seq; Type: ACL; Schema: public; Owner: site
---
-
-GRANT SELECT,USAGE ON SEQUENCE public.api_active_odds_id_seq TO script;
-
-
---
--- Name: TABLE api_all_odds; Type: ACL; Schema: public; Owner: site
---
-
-GRANT ALL ON TABLE public.api_all_odds TO script;
-
-
---
--- Name: SEQUENCE api_all_odds_id_seq; Type: ACL; Schema: public; Owner: site
---
-
-GRANT SELECT,USAGE ON SEQUENCE public.api_all_odds_id_seq TO script;
-
-
---
--- Name: TABLE api_events; Type: ACL; Schema: public; Owner: site
---
-
-GRANT ALL ON TABLE public.api_events TO script;
-
-
---
--- Name: SEQUENCE api_events_id_seq; Type: ACL; Schema: public; Owner: site
---
-
-GRANT SELECT,USAGE ON SEQUENCE public.api_events_id_seq TO script;
 
 
 --
