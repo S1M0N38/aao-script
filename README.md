@@ -19,14 +19,33 @@ pipenv install
 when you need to upgrade aao and aao-script perform a `git pull` and `pipenv install`
 
 ## ⚙️ Configuration
-create in .env file in */aao-script* for database configuration 
-(if you plan to use a postgresql database).
+If you plan to use a postgresql database:
+Install `psql` (google it and follow the guide for your OS) then
+within the psql-command line create a database called *aao* and a 
+user named *script* 
+```shell
+postgres=# CREATE DATABASE aao;
+postgres=# create user script with encrypted password 'my_password';
+postgres=# grant all privileges on database aao to script;
+postgres=# \q
+```
+Now you have to load the schema in the new database that you have
+create with
+```shell
+psql -d aao -f db.sql
+```
+postgresql db should be now setup (you can use a GUI client for 
+postgresql in order to access db in a easy way).
+Create in .env file in */aao-script* for database configuration 
 ```bashrc
-export DB_USER="my_user"
+export DB_USER="script"
 export DB_PASSWORD="my_password"
 export DB_HOST="localhost"
 export DB_PORT="5432"
 ```
+After modify *.env* file you need to restart the virtualenv to
+correctly load envs variables.
+
 Alternatively you can save data in json file with the `--json [path]` flag.
 The .env file can be use to store login credentials for spiders, proxy or other things.
 
