@@ -19,8 +19,8 @@ pipenv install
 when you need to upgrade aao and aao-script perform a `git pull` and `pipenv install`
 
 ## ⚙️ Configuration
-If you plan to use a postgresql database:
-Install `psql` (google it and follow the guide for your OS) then
+**If you plan to use a postgresql database**:
+Install `psql` 9.6 (google it and follow the guide for your OS) then
 within the psql-command line create a database called *aao* and a 
 user named *script* 
 ```shell
@@ -46,7 +46,7 @@ export DB_PORT="5432"
 After modify *.env* file you need to restart the virtualenv to
 correctly load envs variables.
 
-Alternatively you can save data in json file with the `--json [path]` flag.
+**Alternatively** you can save data in json file with the `--json [path]` flag.
 The .env file can be use to store login credentials for spiders, proxy or other things.
 
 Other configuration files are the *competitions* files. They are *.csv* store in
