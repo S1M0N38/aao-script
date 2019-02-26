@@ -40,6 +40,9 @@ def parse_args():
         help=('set the schedule time (default is 60 min). '
               'If set -1 run the job only one time'))
     parser.add_argument(
+        '-d', '--delay', type=int, default=0,
+        help=('set a delay for the initial scrape (default is 0 min)'))
+    parser.add_argument(
         '-p', '--proxy', type=str, default=None,
         help=('use proxy in selenium for avoinding country ban. '
               'e.g https://123.123.13:71 [type]://[host]:[port]'))
@@ -117,6 +120,7 @@ def job(args, competitions):
 def main():
     args = parse_args()
     competitions = get_competitions(args.bookmaker)
+    time.sleep(args.delay * 60)
     if args.schedule == -1:
         job(args, competitions)
     else:
