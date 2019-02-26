@@ -75,7 +75,8 @@ def get_competitions(bookmaker):
 
 
 def job(args, competitions):
-    print('─' * 80)
+    sys.stdout.write('\r' + '─' * 80 + '\n')
+    sys.stdout.flush()
     start_str = datetime.datetime.today().strftime(
         '%d %b %Y - %H:%M:%S').rjust(80 - len(' '.join(sys.argv[1:])))
     if not args.quiet:
@@ -128,7 +129,11 @@ def main():
             job, args=args, competitions=competitions)
         while True:
             schedule.run_pending()
-            time.sleep(5)
+            delta_next = datetime.timedelta(
+                seconds=int(schedule.idle_seconds()))
+            sys.stdout.write(f'\rnext job in {str(delta_next)}')
+            sys.stdout.flush()
+            time.sleep(1)
 
 
 if __name__ == '__main__':
