@@ -107,13 +107,16 @@ def job(args, competitions):
                             f'[{1+i}/{len(competitions)}]')\
                         .rjust(79 - len(msg))
                     print(HTML(f'<seagreen>✔</seagreen>' + msg + info))
-                except IndexError as e:
+                except (IndexError, KeyError, ValueError) as e:
                     sp.hide()
                     msg = f' {country} - {league} [{type(e).__name__}]'
-                    count = f'[0/{len(competitions)}]'.rjust(79 - len(msg))
+                    count = f'[{1+i}/{len(competitions)}]'.rjust(79 - len(msg))
                     print(HTML(f'<red>✘</red>' + msg + count))
+                    e_msg = '\n  '.join(e.args)
+                    print(f'  {e_msg}')
                 sp.show()
     finally:
+        print()
         spider.quit()
         del spider
 
@@ -121,10 +124,13 @@ def job(args, competitions):
 def main():
     args = parse_args()
     competitions = get_competitions(args.bookmaker)
-    time.sleep(args.delay * 60)
-    if args.schedule == -1:
-        job(args, competitions)
-    else:
+    for t in range(args.delay * 60, 0, -1):
+        delta_next = datetime.timedelta(seconds=int(t))
+        sys.stdout.write(f'\rnext job in {str(delta_next)}')
+        sys.stdout.flush()
+        time.sleep(1)
+    job(args, competitions)
+    if args.schedule != -1:
         schedule.every(args.schedule).minutes.do(
             job, args=args, competitions=competitions)
         while True:
