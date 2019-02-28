@@ -15,6 +15,9 @@ import database
 # color from https://en.wikipedia.org/wiki/X11_color_names
 print = print_formatted_text
 
+# TODO move from argsparse to click
+# TODO work with env variable
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
