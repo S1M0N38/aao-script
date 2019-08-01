@@ -25,8 +25,13 @@ within the psql-command line create a database called *aao* and a
 user named *script* 
 ```shell
 postgres=# CREATE DATABASE aao;
-postgres=# create user script with encrypted password 'my_password';
-postgres=# grant all privileges on database aao to script;
+postgres=# CREATE USER script WITH ENCRYPTED PASSWORD 'my_password';
+postgres=# GRANT CONNECT ON DATABASE aao TO script;
+postgres=# GRANT USAGE ON SCHEMA public TO script;
+postgres=# GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO script;
+postgres=# GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO script;
+postgres=# GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO script;
+postgres=# GRANT ALL PRIVILEGES ON DATABASE aao TO script;
 postgres=# \q
 ```
 Now you have to load the schema in the new database that you have
